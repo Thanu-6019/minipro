@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Privacy &amp; Data - MedTrack AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "status-skipped": "#FF3B30",
+                        "on-primary-container": "#fefcff",
+                        "on-surface-variant": "#414755",
+                        "outline-variant": "#c1c6d7",
+                        "inverse-primary": "#adc6ff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#53e16f",
+                        "tertiary-fixed": "#f6d9ff",
+                        "on-primary-fixed": "#001a41",
+                        "status-rescheduled": "#5856D6",
+                        "error": "#ba1a1a",
+                        "on-background": "#1b1b1d",
+                        "primary-fixed": "#d8e2ff",
+                        "outline": "#717786",
+                        "surface-bright": "#fcf8fb",
+                        "background": "#fcf8fb",
+                        "secondary": "#006e28",
+                        "on-secondary-fixed": "#002107",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#72fe88",
+                        "on-surface": "#1b1b1d",
+                        "primary-container": "#0070eb",
+                        "inverse-surface": "#303032",
+                        "surface-variant": "#e4e2e4",
+                        "on-tertiary-fixed": "#310048",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f6f3f5",
+                        "on-primary-fixed-variant": "#004493",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#00732a",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#e8b3ff",
+                        "tertiary": "#8a2bb9",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-dim": "#dcd9dc",
+                        "on-tertiary-fixed-variant": "#7201a2",
+                        "primary": "#0058bc",
+                        "surface-tint": "#005bc1",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-secondary-fixed-variant": "#00531c",
+                        "surface-container-highest": "#e4e2e4",
+                        "surface-light": "#FFFFFF",
+                        "on-primary": "#ffffff",
+                        "status-pending": "#FF9500",
+                        "surface-container": "#f0edef",
+                        "surface-container-high": "#eae7ea",
+                        "inverse-on-surface": "#f3f0f2",
+                        "surface": "#fcf8fb",
+                        "surface-dark": "#121212",
+                        "tertiary-container": "#a649d5",
+                        "secondary-container": "#6ffb85",
+                        "status-taken": "#34C759"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "base": "4px",
+                        "xxs": "4px",
+                        "sm": "12px",
+                        "margin-tablet": "32px",
+                        "xs": "8px",
+                        "xl": "32px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["17px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "title-lg": ["20px", {"lineHeight": "25px", "fontWeight": "600"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["34px", {"lineHeight": "41px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["11px", {"lineHeight": "13px", "letterSpacing": "0.06em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["15px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #0058bc;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #0058bc;
+        }
+        
+        /* Subtle pulsing animation for sync status */
+        @keyframes pulse-sync {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        .sync-active {
+            animation: pulse-sync 2s infinite ease-in-out;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased pb-24 pt-16 selection:bg-primary-container selection:text-on-primary-container min-h-screen relative overflow-x-hidden">
+<!-- TopAppBar Semantic Mapping: Intent=Profile/Settings. Suppressed if task-focused, but user requested 'Privacy & Data' settings screen WITH Top Bar AND Bottom Nav. 
+         Wait, instruction: "Task-Focused: Any sub-page featuring a 'Close' or 'Back' action that implies a temporary departure from the main navigation flow -> Automatic Suppression of Nav Shell."
+         However, the user prompt specifically asked: "Top bar with back button. Bottom nav bar included." 
+         Following JSON Conflict Resolution: JSON/User prompt explicit request overrides semantic shell if directly requested. Let's render both as requested, but hide Nav on desktop maybe? Will render as requested. -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dark/80 backdrop-blur-xl shadow-sm shadow-primary/5 flex justify-between items-center px-margin-mobile h-16 transition-transform duration-200">
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-variant/50 dark:hover:bg-surface-container-highest/20 p-2 rounded-full active:scale-95 transition-transform duration-200 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-title-lg text-title-lg text-on-surface text-center flex-1">Privacy &amp; Data</h1>
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-variant/50 dark:hover:bg-surface-container-highest/20 p-2 rounded-full active:scale-95 transition-transform duration-200 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</header>
+<main class="px-margin-mobile md:px-margin-tablet py-lg max-w-3xl mx-auto space-y-xl mt-4">
+<!-- Header Section -->
+<section class="text-center space-y-sm">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-container/20 text-primary mb-2">
+<span class="material-symbols-outlined !text-[32px]" data-icon="shield_lock">shield_lock</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Your Data is Secure</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto">
+                We use end-to-end encryption to ensure your medical history remains private. You control who sees your data.
+            </p>
+</section>
+<!-- Privacy Control Card -->
+<section class="glass-card rounded-xl p-md shadow-[0_4px_20px_rgba(0,88,188,0.05)] space-y-md">
+<h3 class="font-title-lg text-title-lg text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" data-icon="security">security</span>
+                Privacy Control
+            </h3>
+<div class="space-y-sm">
+<!-- FaceID / TouchID Toggle -->
+<div class="flex items-center justify-between py-xs border-b border-surface-variant/50 pb-sm">
+<div class="space-y-base">
+<p class="font-body-lg text-body-lg text-on-surface">Biometric Unlock</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Require FaceID or TouchID to open MedTrack AI.</p>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-300 ease-in-out" id="biometric_toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-highest cursor-pointer" for="biometric_toggle"></label>
+</div>
+</div>
+<!-- Share with Doctor Toggle -->
+<div class="flex items-center justify-between py-xs">
+<div class="space-y-base">
+<p class="font-body-lg text-body-lg text-on-surface">Share with Healthcare Provider</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Automatically share weekly insight summaries with your primary care physician.</p>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-300 ease-in-out" id="doctor_share_toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-highest cursor-pointer" for="doctor_share_toggle"></label>
+</div>
+</div>
+</div>
+</section>
+<!-- Data Management & Export -->
+<section class="glass-card rounded-xl p-md shadow-[0_4px_20px_rgba(0,88,188,0.05)] space-y-md">
+<h3 class="font-title-lg text-title-lg text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" data-icon="dataset">dataset</span>
+                Data Management
+            </h3>
+<!-- Cloud Sync Status -->
+<div class="bg-surface-container-lowest rounded-lg p-sm border border-surface-variant flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-status-taken/10 text-status-taken flex items-center justify-center sync-active">
+<span class="material-symbols-outlined" data-icon="cloud_sync">cloud_sync</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg text-on-surface">Cloud Sync Active</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Last synced: Just now</p>
+</div>
+</div>
+<button class="text-primary font-label-md text-label-md hover:underline">Sync Now</button>
+</div>
+<!-- Export Actions -->
+<div class="space-y-sm pt-sm">
+<p class="font-body-md text-body-md text-on-surface-variant mb-xs">Download a copy of your health records, medication history, and logged insights.</p>
+<div class="grid grid-cols-2 gap-sm">
+<button class="flex items-center justify-center gap-xs py-sm px-md rounded-lg bg-primary-container text-on-primary-container hover:bg-primary-container/90 transition-colors active:scale-95 w-full">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+<span class="font-label-md text-label-md">Export PDF</span>
+</button>
+<button class="flex items-center justify-center gap-xs py-sm px-md rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors active:scale-95 w-full">
+<span class="material-symbols-outlined" data-icon="csv">csv</span>
+<span class="font-label-md text-label-md">Export CSV</span>
+</button>
+</div>
+</div>
+<div class="pt-md border-t border-surface-variant/50 mt-sm">
+<button class="flex items-center justify-between w-full text-left group">
+<div class="flex items-center gap-sm text-error">
+<span class="material-symbols-outlined" data-icon="delete_forever">delete_forever</span>
+<span class="font-body-lg text-body-lg">Delete Account &amp; Data</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-error transition-colors" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Semantic Mapping: Intent=Profile. Highlight 'Profile'. -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-6 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-3xl shadow-[0_-4px_20px_rgba(0,88,188,0.08)] rounded-t-xl z-50 md:hidden">
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant px-5 py-1 hover:text-primary dark:hover:text-primary-fixed active:scale-90 transition-all duration-300 ease-out group" href="#">
+<span class="material-symbols-outlined mb-1 group-hover:scale-110 transition-transform" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant px-5 py-1 hover:text-primary dark:hover:text-primary-fixed active:scale-90 transition-all duration-300 ease-out group" href="#">
+<span class="material-symbols-outlined mb-1 group-hover:scale-110 transition-transform" data-icon="medication">medication</span>
+<span class="font-label-sm text-label-sm">Meds</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant px-5 py-1 hover:text-primary dark:hover:text-primary-fixed active:scale-90 transition-all duration-300 ease-out group" href="#">
+<span class="material-symbols-outlined mb-1 group-hover:scale-110 transition-transform" data-icon="analytics">analytics</span>
+<span class="font-label-sm text-label-sm">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-fixed-dim text-on-primary-container dark:text-on-primary-fixed rounded-full px-5 py-1 hover:text-primary dark:hover:text-primary-fixed active:scale-90 transition-all duration-300 ease-out group" href="#">
+<span class="material-symbols-outlined mb-1 group-hover:scale-110 transition-transform" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple toggle visual logic for custom CSS toggles
+        document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+            toggle.addEventListener('change', (e) => {
+                const label = e.target.nextElementSibling;
+                if(e.target.checked) {
+                    label.classList.remove('bg-surface-container-highest');
+                    label.classList.add('bg-primary-container');
+                } else {
+                    label.classList.add('bg-surface-container-highest');
+                    label.classList.remove('bg-primary-container');
+                }
+            });
+            // Initial state check
+            if(toggle.checked) {
+                const label = toggle.nextElementSibling;
+                label.classList.remove('bg-surface-container-highest');
+                label.classList.add('bg-primary-container');
+            }
+        });
+    </script>
+</body></html>

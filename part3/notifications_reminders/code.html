@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notification &amp; Reminders</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "status-skipped": "#FF3B30",
+                        "on-primary-container": "#fefcff",
+                        "on-surface-variant": "#414755",
+                        "outline-variant": "#c1c6d7",
+                        "inverse-primary": "#adc6ff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#53e16f",
+                        "tertiary-fixed": "#f6d9ff",
+                        "on-primary-fixed": "#001a41",
+                        "status-rescheduled": "#5856D6",
+                        "error": "#ba1a1a",
+                        "on-background": "#1b1b1d",
+                        "primary-fixed": "#d8e2ff",
+                        "outline": "#717786",
+                        "surface-bright": "#fcf8fb",
+                        "background": "#fcf8fb",
+                        "secondary": "#006e28",
+                        "on-secondary-fixed": "#002107",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#72fe88",
+                        "on-surface": "#1b1b1d",
+                        "primary-container": "#0070eb",
+                        "inverse-surface": "#303032",
+                        "surface-variant": "#e4e2e4",
+                        "on-tertiary-fixed": "#310048",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f6f3f5",
+                        "on-primary-fixed-variant": "#004493",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#00732a",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#e8b3ff",
+                        "tertiary": "#8a2bb9",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-dim": "#dcd9dc",
+                        "on-tertiary-fixed-variant": "#7201a2",
+                        "primary": "#0058bc",
+                        "surface-tint": "#005bc1",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-secondary-fixed-variant": "#00531c",
+                        "surface-container-highest": "#e4e2e4",
+                        "surface-light": "#FFFFFF",
+                        "on-primary": "#ffffff",
+                        "status-pending": "#FF9500",
+                        "surface-container": "#f0edef",
+                        "surface-container-high": "#eae7ea",
+                        "inverse-on-surface": "#f3f0f2",
+                        "surface": "#fcf8fb",
+                        "surface-dark": "#121212",
+                        "tertiary-container": "#a649d5",
+                        "secondary-container": "#6ffb85",
+                        "status-taken": "#34C759"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "base": "4px",
+                        "xxs": "4px",
+                        "sm": "12px",
+                        "margin-tablet": "32px",
+                        "xs": "8px",
+                        "xl": "32px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["17px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "title-lg": ["20px", {"lineHeight": "25px", "fontWeight": "600"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["34px", {"lineHeight": "41px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["11px", {"lineHeight": "13px", "letterSpacing": "0.06em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["15px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #fcf8fb; /* surface */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Custom Switch Styling */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #0058bc; /* primary */
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #0058bc; /* primary */
+        }
+        
+        /* Custom Range Slider Styling */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            margin-top: -8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            border: 2px solid #0058bc;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #e4e2e4; /* surface-variant */
+            border-radius: 2px;
+        }
+        
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 88, 188, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface overflow-x-hidden pb-[100px]">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dark/80 backdrop-blur-xl shadow-sm shadow-primary/5">
+<div class="flex justify-between items-center px-margin-mobile h-16 w-full">
+<button aria-label="Go back" class="hover:bg-surface-variant/50 dark:hover:bg-surface-container-highest/20 active:scale-95 transition-transform duration-200 p-2 rounded-full flex items-center justify-center text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<h1 class="font-title-lg text-title-lg text-on-surface">Notifications</h1>
+<div class="w-10"></div> <!-- Placeholder for balance -->
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-[80px] px-margin-mobile md:px-margin-tablet max-w-4xl mx-auto space-y-xl">
+<!-- Header Section -->
+<section class="space-y-sm">
+<p class="font-body-md text-body-md text-on-surface-variant">Manage how and when MedTrack AI alerts you. We recommend keeping critical alerts on for your safety.</p>
+</section>
+<!-- Medication Alerts -->
+<section class="glass-panel rounded-xl p-lg space-y-lg">
+<div class="flex items-center gap-sm">
+<div class="bg-primary-container text-on-primary-container p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+</div>
+<h2 class="font-title-lg text-title-lg text-on-surface">Medication Alerts</h2>
+</div>
+<div class="space-y-md">
+<!-- Push Notifications -->
+<div class="flex justify-between items-center py-sm border-b border-surface-variant">
+<div class="pr-lg">
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold">Push Notifications</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Receive standard reminders on your device.</p>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-all duration-300 z-10 top-0 left-0" id="push_toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-variant cursor-pointer transition-colors duration-300" for="push_toggle"></label>
+</div>
+</div>
+<!-- Critical Alerts -->
+<div class="flex justify-between items-center py-sm">
+<div class="pr-lg">
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold">Critical Alerts</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Bypass "Do Not Disturb" for missed essential medications.</p>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-all duration-300 z-10 top-0 left-0" id="critical_toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-variant cursor-pointer transition-colors duration-300" for="critical_toggle"></label>
+</div>
+</div>
+</div>
+</section>
+<!-- Meal-Aware System -->
+<section class="glass-panel rounded-xl p-lg space-y-lg">
+<div class="flex items-center gap-sm">
+<div class="bg-tertiary-container text-on-tertiary-container p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+<div>
+<h2 class="font-title-lg text-title-lg text-on-surface">Meal-Aware System</h2>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider mt-1">Smart Scheduling</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Configure your typical meal times so we can accurately remind you to take medications "with food" or "on an empty stomach."</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mt-md">
+<!-- Breakfast -->
+<div class="bg-surface-container-low rounded-lg p-md flex flex-col gap-sm">
+<label class="font-label-md text-label-md text-on-surface-variant font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">light_mode</span> Breakfast
+                    </label>
+<input class="bg-surface-container-lowest border-none rounded-md px-3 py-2 font-body-lg text-body-lg text-on-surface shadow-sm focus:ring-2 focus:ring-primary w-full cursor-pointer" type="time" value="08:00"/>
+</div>
+<!-- Lunch -->
+<div class="bg-surface-container-low rounded-lg p-md flex flex-col gap-sm">
+<label class="font-label-md text-label-md text-on-surface-variant font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">wb_sunny</span> Lunch
+                    </label>
+<input class="bg-surface-container-lowest border-none rounded-md px-3 py-2 font-body-lg text-body-lg text-on-surface shadow-sm focus:ring-2 focus:ring-primary w-full cursor-pointer" type="time" value="13:00"/>
+</div>
+<!-- Dinner -->
+<div class="bg-surface-container-low rounded-lg p-md flex flex-col gap-sm">
+<label class="font-label-md text-label-md text-on-surface-variant font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">dark_mode</span> Dinner
+                    </label>
+<input class="bg-surface-container-lowest border-none rounded-md px-3 py-2 font-body-lg text-body-lg text-on-surface shadow-sm focus:ring-2 focus:ring-primary w-full cursor-pointer" type="time" value="19:00"/>
+</div>
+</div>
+</section>
+<!-- Appointment Reminders -->
+<section class="glass-panel rounded-xl p-lg space-y-lg">
+<div class="flex items-center gap-sm">
+<div class="bg-secondary-container text-on-secondary-container p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+</div>
+<h2 class="font-title-lg text-title-lg text-on-surface">Appointment Reminders</h2>
+</div>
+<div class="space-y-md">
+<p class="font-body-md text-body-md text-on-surface-variant">Adjust how early you want to be notified about upcoming doctor visits or lab tests.</p>
+<div class="pt-sm pb-md">
+<div class="flex justify-between items-center mb-xs">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Lead Time</span>
+<span class="font-body-md text-body-md text-primary font-semibold" id="lead_time_display">1 Day Before</span>
+</div>
+<input class="w-full mt-2" id="lead_time_slider" max="5" min="1" oninput="updateLeadTime(this.value)" type="range" value="3"/>
+<div class="flex justify-between mt-2 font-label-sm text-label-sm text-outline">
+<span>1 hr</span>
+<span>2 hrs</span>
+<span>1 day</span>
+<span>2 days</span>
+<span>1 wk</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Hidden on MD+, visible on mobile) -->
+<nav class="fixed bottom-0 w-full rounded-t-xl z-50 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-3xl shadow-[0_-4px_20px_rgba(0,88,188,0.08)] md:hidden">
+<div class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-6">
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant px-5 py-1 hover:text-primary dark:hover:text-primary-fixed active:scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant px-5 py-1 hover:text-primary dark:hover:text-primary-fixed active:scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">medication</span>
+<span class="font-label-md text-label-md">Meds</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant px-5 py-1 hover:text-primary dark:hover:text-primary-fixed active:scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">analytics</span>
+<span class="font-label-md text-label-md">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-fixed-dim text-on-primary-container dark:text-on-primary-fixed rounded-full px-5 py-1 hover:text-primary dark:hover:text-primary-fixed active:scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Micro-interaction for toggle switches
+        const toggles = document.querySelectorAll('.toggle-checkbox');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                if(this.checked) {
+                    this.style.left = '100%';
+                    this.style.transform = 'translateX(-100%)';
+                    this.style.borderColor = '#0058bc';
+                } else {
+                    this.style.left = '0';
+                    this.style.transform = 'translateX(0)';
+                    this.style.borderColor = '#e4e2e4';
+                }
+            });
+            // Initialize state
+            if(toggle.checked) {
+                 toggle.style.left = '100%';
+                 toggle.style.transform = 'translateX(-100%)';
+                 toggle.style.borderColor = '#0058bc';
+            }
+        });
+
+        // Slider logic
+        function updateLeadTime(val) {
+            const display = document.getElementById('lead_time_display');
+            const values = ["1 Hour Before", "2 Hours Before", "1 Day Before", "2 Days Before", "1 Week Before"];
+            display.innerText = values[val - 1];
+            
+            // Haptic feedback simulation (if supported)
+            if (navigator.vibrate) {
+                navigator.vibrate(10);
+            }
+        }
+    </script>
+</body></html>
