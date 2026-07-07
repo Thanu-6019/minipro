@@ -11,11 +11,11 @@ import {
     ActivityIndicator,
 } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
-import { useRouter } from 'expo-router';
 import { useGenderAvatar } from '@/hooks/useGenderAvatar';
 import { useMedicines } from '@/features/medicines/hooks/useMedicines';
 import { useUpcomingReminders } from '@/features/reminders/hooks/useReminders';
 import { useAdherenceScore } from '@/features/reminders/hooks/useAdherence';
+import UnifiedBottomNav from '@/components/UnifiedBottomNav';
 
 function formatTime(iso: string): string {
     const d = new Date(iso);
@@ -37,7 +37,6 @@ function getMedicineDetail(medicines: any[], scheduleId: string): string {
 }
 
 export default function ReminderHistory() {
-    const router = useRouter();
     const avatarSource = useGenderAvatar();
     const { data: medicines = [], isLoading: medicinesLoading } = useMedicines();
     const { data: reminders = [], isLoading: remindersLoading } = useUpcomingReminders();
@@ -346,24 +345,7 @@ export default function ReminderHistory() {
             </ScrollView>
 
             {/* Bottom Navigation Bar */}
-            <View style={styles.bottomNav}>
-                <Pressable style={styles.navItem} onPress={() => router.push('/(tabs)')} accessibilityLabel="Home" accessibilityRole="tab" accessibilityState={{ selected: false }}>
-                    <Text style={styles.navIcon}>home</Text>
-                    <Text style={styles.navLabel}>Home</Text>
-                </Pressable>
-                <Pressable style={styles.navItem} onPress={() => router.push('/medicines')} accessibilityLabel="Library" accessibilityRole="tab" accessibilityState={{ selected: false }}>
-                    <Text style={styles.navIcon}>medical_services</Text>
-                    <Text style={styles.navLabel}>Library</Text>
-                </Pressable>
-                <Pressable style={styles.navItem} onPress={() => router.push('/scanner/scan')} accessibilityLabel="Scan" accessibilityRole="tab" accessibilityState={{ selected: false }}>
-                    <Text style={styles.navIcon}>document_scanner</Text>
-                    <Text style={styles.navLabel}>Scan</Text>
-                </Pressable>
-                <Pressable style={[styles.navItem, styles.navItemActive]} onPress={() => router.push('/reminders')} accessibilityLabel="Reminders" accessibilityRole="tab" accessibilityState={{ selected: true }}>
-                    <Text style={[styles.navIcon, styles.navIconActive]}>alarm</Text>
-                    <Text style={[styles.navLabel, styles.navLabelActive]}>Reminders</Text>
-                </Pressable>
-            </View>
+            <UnifiedBottomNav />
         </SafeAreaView>
     );
 }
@@ -698,55 +680,5 @@ const styles = StyleSheet.create({
         fontSize: 11,
         color: '#414755',
         fontStyle: 'italic',
-    },
-
-    // --- BottomNav ---
-    bottomNav: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        paddingHorizontal: 16,
-        paddingBottom: 16,
-        paddingTop: 12,
-        backgroundColor: 'rgba(252, 248, 251, 0.8)',
-        borderTopLeftRadius: 12,
-        borderTopRightRadius: 12,
-        shadowColor: '#0058bc',
-        shadowOffset: { width: 0, height: -4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 20,
-        elevation: 10,
-    },
-    navItem: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 12,
-        paddingVertical: 8,
-        borderRadius: 8,
-    },
-    navItemActive: {
-        backgroundColor: 'rgba(0, 112, 235, 0.2)',
-        paddingHorizontal: 16,
-    },
-    navIcon: {
-        fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif',
-        fontSize: 24,
-        color: '#414755',
-    },
-    navIconActive: {
-        color: '#0058bc',
-    },
-    navLabel: {
-        fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif-medium',
-        fontSize: 11,
-        marginTop: 4,
-        color: '#414755',
-    },
-    navLabelActive: {
-        fontWeight: 'bold',
-        color: '#0058bc',
     },
 });

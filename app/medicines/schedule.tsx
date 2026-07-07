@@ -382,6 +382,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   freqCardActive: {
+    borderWidth: 2,
     borderColor: '#0058bc',
     backgroundColor: 'rgba(0, 88, 188, 0.05)',
   },

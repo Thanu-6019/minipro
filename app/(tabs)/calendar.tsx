@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { useGenderAvatar } from '@/hooks/useGenderAvatar';
 import { useAppointments } from '@/features/appointments/hooks/useAppointments';
+import UnifiedBottomNav from '@/components/UnifiedBottomNav';
 
 function formatTime(iso: string): string {
     const d = new Date(iso);
@@ -150,10 +151,15 @@ export default function AppointmentCalendar() {
                                     <View style={styles.appointmentDetailTop}>
                                         <Text style={styles.appointmentDoctor}>{appt.title}</Text>
                                         <View style={idx === 0 ? styles.appointmentBadgeUpcoming : styles.appointmentBadgeCheckup}>
-                                            <Text style={[styles.appointmentBadgeText, idx !== 0 && { color: '#0058bc' }]}>Upcoming</Text>
+                                            <Text style={[styles.appointmentBadgeText, idx !== 0 && { color: '#0058bc' }]}>{idx === 0 ? 'Upcoming' : 'Check-up'}</Text>
                                         </View>
                                     </View>
-                                    <Text style={styles.appointmentType}>{appt.location || 'No location specified'}</Text>
+                                    <View style={styles.appointmentMetaRow}>
+                                        <Text style={styles.appointmentMetaIcon}>
+                                            {(appt.location || '').toLowerCase().includes('video') || (appt.location || '').toLowerCase().includes('telehealth') ? 'videocam' : 'location_on'}
+                                        </Text>
+                                        <Text style={styles.appointmentMetaText}>{appt.location || 'No location specified'}</Text>
+                                    </View>
                                 </View>
                             </View>
                         ))}
@@ -162,7 +168,7 @@ export default function AppointmentCalendar() {
 
                 <View style={{ height: 120 }} />
             </ScrollView>
-
+            <UnifiedBottomNav active="calendar" />
         </View>
     );
 }
@@ -473,57 +479,6 @@ const styles = StyleSheet.create({
         fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif',
         fontSize: 28,
         color: '#ffffff',
-    },
-
-    // --- Bottom Nav ---
-    bottomNav: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        paddingHorizontal: 16,
-        paddingBottom: Platform.OS === 'ios' ? 20 : 12,
-        paddingTop: 8,
-        backgroundColor: 'rgba(252, 248, 251, 0.8)',
-        borderTopWidth: 1,
-        borderTopColor: 'rgba(0,0,0,0.05)',
-        borderTopLeftRadius: 12,
-        borderTopRightRadius: 12,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: -4 },
-        shadowOpacity: 0.05,
-        shadowRadius: 20,
-        elevation: 10,
-    },
-    navItem: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 12,
-        paddingVertical: 4,
-        borderRadius: 12,
-    },
-    navItemActive: {
-        backgroundColor: 'rgba(0, 112, 235, 0.2)',
-        paddingHorizontal: 16,
-    },
-    navIcon: {
-        fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif',
-        fontSize: 24,
-        marginBottom: 2,
-        color: '#414755',
-    },
-    navIconActive: {
-        color: '#0058bc',
-    },
-    navLabel: {
-        fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif-medium',
-        fontSize: 11,
-        color: '#414755',
-    },
-    navLabelActive: {
-        color: '#0058bc',
     },
 
     // --- Common ---

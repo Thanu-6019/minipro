@@ -326,11 +326,13 @@ export default function MedicineDetails() {
           <Pressable style={({ pressed }) => [styles.actionButtonDanger, pressed && styles.pressedScale]} onPress={() => {
             Alert.alert('Delete Medicine', `Are you sure you want to delete ${medicine?.name}?`, [
               { text: 'Cancel', style: 'cancel' },
-              { text: 'Delete', style: 'destructive', onPress: () => {
-                if (medicine) {
-                  deleteMedicine.mutate(medicine.id, { onSuccess: () => router.back() });
+              {
+                text: 'Delete', style: 'destructive', onPress: () => {
+                  if (medicine) {
+                    deleteMedicine.mutate(medicine.id, { onSuccess: () => router.back() });
+                  }
                 }
-              }},
+              },
             ]);
           }} accessibilityLabel="Delete medicine" accessibilityRole="button">
             <Text style={styles.actionIconDanger}>delete</Text>

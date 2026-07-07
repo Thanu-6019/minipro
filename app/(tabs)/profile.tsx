@@ -11,6 +11,7 @@ import {
 import { useAuthStore } from '@/store/authStore';
 import { useGenderAvatar } from '@/hooks/useGenderAvatar';
 import { useRouter } from 'expo-router';
+import UnifiedBottomNav from '@/components/UnifiedBottomNav';
 
 export default function UserProfile() {
     const user = useAuthStore((state) => state.user);
@@ -131,7 +132,7 @@ export default function UserProfile() {
 
                 <View style={{ height: 80 }} />
             </ScrollView>
-
+            <UnifiedBottomNav active="profile" />
         </View>
     );
 }
@@ -384,59 +385,6 @@ const styles = StyleSheet.create({
         fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif-medium',
         fontSize: 13,
         color: '#ba1a1a',
-    },
-
-    // --- Bottom Nav ---
-    bottomNav: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        paddingHorizontal: 16,
-        paddingBottom: Platform.OS === 'ios' ? 20 : 12,
-        paddingTop: 8,
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        borderTopWidth: 1,
-        borderTopColor: 'rgba(0,0,0,0.05)',
-        borderTopLeftRadius: 12,
-        borderTopRightRadius: 12,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: -4 },
-        shadowOpacity: 0.05,
-        shadowRadius: 20,
-        elevation: 10,
-    },
-    navItem: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 12,
-        paddingVertical: 4,
-        borderRadius: 12,
-    },
-    navItemActive: {
-        backgroundColor: 'rgba(0, 112, 235, 0.2)',
-        paddingHorizontal: 16,
-        borderRadius: 999,
-    },
-    navIcon: {
-        fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif',
-        fontSize: 24,
-        marginBottom: 2,
-        color: '#414755',
-    },
-    navIconActive: {
-        color: '#0058bc',
-    },
-    navLabel: {
-        fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif-medium',
-        fontSize: 11,
-        color: '#414755',
-    },
-    navLabelActive: {
-        color: '#0058bc',
-        fontWeight: '600',
     },
 
     // --- Common ---

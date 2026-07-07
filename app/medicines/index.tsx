@@ -15,6 +15,7 @@ import { useRouter } from 'expo-router';
 import { useMedicines } from '@/features/medicines/hooks/useMedicines';
 import { useGenderAvatar } from '@/hooks/useGenderAvatar';
 import type { Medicine } from '@/features/medicines/services/medicine.service.interface';
+import UnifiedBottomNav from '@/components/UnifiedBottomNav';
 
 const FILTERS = ['All Meds', 'Active', 'As Needed', 'Past'] as const;
 type FilterKey = typeof FILTERS[number];
@@ -232,29 +233,7 @@ export default function MedicineLibrary() {
 
       </View>
 
-      {/* Bottom Navigation Bar */}
-      <View style={styles.bottomNav}>
-        <Pressable style={styles.navItem} accessibilityLabel="Home" accessibilityRole="button">
-          <Text style={styles.navIcon}>home</Text>
-          <Text style={styles.navLabel}>Home</Text>
-        </Pressable>
-        <Pressable style={[styles.navItem, styles.navItemActive]} accessibilityLabel="Medicines" accessibilityRole="button">
-          <Text style={[styles.navIcon, styles.navIconActive]}>pill</Text>
-          <Text style={[styles.navLabel, styles.navLabelActive]}>Meds</Text>
-        </Pressable>
-        <Pressable style={styles.navItem} accessibilityLabel="Scan" accessibilityRole="button">
-          <Text style={styles.navIcon}>document_scanner</Text>
-          <Text style={styles.navLabel}>Scan</Text>
-        </Pressable>
-        <Pressable style={styles.navItem} accessibilityLabel="Stats" accessibilityRole="button">
-          <Text style={styles.navIcon}>monitoring</Text>
-          <Text style={styles.navLabel}>Stats</Text>
-        </Pressable>
-        <Pressable style={styles.navItem} accessibilityLabel="Profile" accessibilityRole="button">
-          <Text style={styles.navIcon}>person</Text>
-          <Text style={styles.navLabel}>Profile</Text>
-        </Pressable>
-      </View>
+      <UnifiedBottomNav active="medicines" />
 
     </SafeAreaView>
   );
@@ -516,60 +495,5 @@ const styles = StyleSheet.create({
     fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif',
     fontSize: 24,
     color: '#ffffff',
-  },
-
-  // --- Bottom Navigation ---
-  bottomNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingBottom: Platform.OS === 'ios' ? 20 : 12,
-    paddingTop: 8,
-    backgroundColor: 'rgba(252, 248, 251, 0.8)',
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(193, 198, 215, 0.3)',
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -4 },
-    shadowOpacity: 0.05,
-    shadowRadius: 20,
-    elevation: 10,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    zIndex: 50,
-  },
-  navItem: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 4,
-    paddingHorizontal: 12,
-    borderRadius: 12,
-    opacity: 0.6,
-  },
-  navItemActive: {
-    opacity: 1,
-    backgroundColor: 'rgba(0, 112, 235, 0.2)', // primary-container/20
-    paddingHorizontal: 16,
-  },
-  navIcon: {
-    fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif',
-    fontSize: 24,
-    marginBottom: 2,
-    color: '#414755',
-  },
-  navIconActive: {
-    color: '#0058bc',
-  },
-  navLabel: {
-    fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif-medium',
-    fontSize: 11,
-    color: '#414755',
-  },
-  navLabelActive: {
-    color: '#0058bc',
   },
 });

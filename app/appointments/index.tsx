@@ -12,6 +12,7 @@ import {
 import { useRouter } from 'expo-router';
 import { useGenderAvatar } from '@/hooks/useGenderAvatar';
 import { useAppointments } from '@/features/appointments/hooks/useAppointments';
+import UnifiedBottomNav from '@/components/UnifiedBottomNav';
 
 function formatDate(iso: string) {
   const d = new Date(iso);
@@ -212,29 +213,7 @@ export default function UpcomingAppointments() {
         />
       )}
 
-      {/* Bottom Navigation Bar */}
-      <View style={styles.bottomNav}>
-        <Pressable style={styles.navItem} accessibilityLabel="Dashboard" accessibilityRole="tab" accessibilityState={{ selected: false }}>
-          <Text style={styles.navIcon}>dashboard</Text>
-          <Text style={styles.navLabel}>Dashboard</Text>
-        </Pressable>
-        <Pressable style={styles.navItem} accessibilityLabel="Metrics" accessibilityRole="tab" accessibilityState={{ selected: false }}>
-          <Text style={styles.navIcon}>monitoring</Text>
-          <Text style={styles.navLabel}>Metrics</Text>
-        </Pressable>
-        <Pressable style={[styles.navItem, styles.navItemActive]} accessibilityLabel="Meds" accessibilityRole="tab" accessibilityState={{ selected: true }}>
-          <Text style={[styles.navIcon, styles.navIconActive]}>medical_services</Text>
-          <Text style={[styles.navLabel, styles.navLabelActive]}>Meds</Text>
-        </Pressable>
-        <Pressable style={styles.navItem} accessibilityLabel="Insights" accessibilityRole="tab" accessibilityState={{ selected: false }}>
-          <Text style={styles.navIcon}>query_stats</Text>
-          <Text style={styles.navLabel}>Insights</Text>
-        </Pressable>
-        <Pressable style={styles.navItem} accessibilityLabel="Profile" accessibilityRole="tab" accessibilityState={{ selected: false }}>
-          <Text style={styles.navIcon}>person</Text>
-          <Text style={styles.navLabel}>Profile</Text>
-        </Pressable>
-      </View>
+      <UnifiedBottomNav active="calendar" />
 
     </View>
   );
@@ -494,58 +473,6 @@ const styles = StyleSheet.create({
     fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif',
     fontSize: 24,
     color: '#0058bc',
-  },
-
-  // --- Bottom Nav ---
-  bottomNav: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingHorizontal: 16,
-    paddingBottom: Platform.OS === 'ios' ? 20 : 12,
-    paddingTop: 8,
-    backgroundColor: 'rgba(252, 248, 251, 0.8)',
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(0,0,0,0.05)',
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -4 },
-    shadowOpacity: 0.05,
-    shadowRadius: 20,
-    elevation: 10,
-  },
-  navItem: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    borderRadius: 12,
-  },
-  navItemActive: {
-    backgroundColor: 'rgba(0, 112, 235, 0.2)',
-    paddingHorizontal: 16,
-  },
-  navIcon: {
-    fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif',
-    fontSize: 24,
-    marginBottom: 2,
-    color: '#414755',
-  },
-  navIconActive: {
-    color: '#0058bc',
-  },
-  navLabel: {
-    fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif-medium',
-    fontSize: 11,
-    color: '#414755',
-  },
-  navLabelActive: {
-    color: '#0058bc',
-    fontWeight: '600',
   },
 
   // --- Common ---

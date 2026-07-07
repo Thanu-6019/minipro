@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSettings } from '../../src/features/settings/hooks/useSettings';
+import UnifiedBottomNav from '@/components/UnifiedBottomNav';
 
 // --- Custom Toggle Switch Component ---
 const ToggleSwitch = ({ value, onValueChange, label }: { value: boolean; onValueChange: () => void; label: string }) => {
@@ -191,24 +192,7 @@ export default function NotificationsScreen() {
             </ScrollView>
 
             {/* Bottom Navigation Bar */}
-            <View style={styles.bottomNav}>
-                <Pressable style={styles.navItem} accessibilityLabel="Dashboard" accessibilityRole="tab" accessibilityState={{ selected: false }}>
-                    <Text style={styles.navIcon}>dashboard</Text>
-                    <Text style={styles.navLabel}>Dashboard</Text>
-                </Pressable>
-                <Pressable style={styles.navItem} accessibilityLabel="Meds" accessibilityRole="tab" accessibilityState={{ selected: false }}>
-                    <Text style={styles.navIcon}>medication</Text>
-                    <Text style={styles.navLabel}>Meds</Text>
-                </Pressable>
-                <Pressable style={styles.navItem} accessibilityLabel="Insights" accessibilityRole="tab" accessibilityState={{ selected: false }}>
-                    <Text style={styles.navIcon}>analytics</Text>
-                    <Text style={styles.navLabel}>Insights</Text>
-                </Pressable>
-                <Pressable style={[styles.navItem, styles.navItemActive]} accessibilityLabel="Profile" accessibilityRole="tab" accessibilityState={{ selected: true }}>
-                    <Text style={[styles.navIcon, styles.navIconActive]}>person</Text>
-                    <Text style={[styles.navLabel, styles.navLabelActive]}>Profile</Text>
-                </Pressable>
-            </View>
+            <UnifiedBottomNav active="profile" />
 
         </View>
     );
@@ -461,58 +445,5 @@ const styles = StyleSheet.create({
     sliderLabelActive: {
         color: '#0058bc',
         fontWeight: 'bold',
-    },
-
-    // --- Bottom Nav ---
-    bottomNav: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        paddingHorizontal: 16,
-        paddingBottom: Platform.OS === 'ios' ? 20 : 12,
-        paddingTop: 8,
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        borderTopWidth: 1,
-        borderTopColor: 'rgba(0,0,0,0.05)',
-        borderTopLeftRadius: 12,
-        borderTopRightRadius: 12,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: -4 },
-        shadowOpacity: 0.05,
-        shadowRadius: 20,
-        elevation: 10,
-    },
-    navItem: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 12,
-        paddingVertical: 4,
-        borderRadius: 12,
-    },
-    navItemActive: {
-        backgroundColor: 'rgba(0, 112, 235, 0.2)',
-        paddingHorizontal: 16,
-        borderRadius: 999,
-    },
-    navIcon: {
-        fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif',
-        fontSize: 24,
-        marginBottom: 2,
-        color: '#414755',
-    },
-    navIconActive: {
-        color: '#0058bc',
-    },
-    navLabel: {
-        fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif-medium',
-        fontSize: 11,
-        color: '#414755',
-    },
-    navLabelActive: {
-        color: '#0058bc',
-        fontWeight: '600',
     },
 });

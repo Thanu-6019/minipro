@@ -17,6 +17,7 @@ import { useHealthMetrics } from '@/features/health/hooks/useHealthMetrics';
 import { useAppointments } from '@/features/appointments/hooks/useAppointments';
 import { useUpcomingReminders } from '@/features/reminders/hooks/useReminders';
 import { useAdherenceScore } from '@/features/reminders/hooks/useAdherence';
+import UnifiedBottomNav from '@/components/UnifiedBottomNav';
 
 function getGreeting(): string {
   const h = new Date().getHours();
@@ -77,11 +78,11 @@ export default function MedTrackDashboard() {
       {/* Top App Bar */}
       <View style={styles.topAppBar}>
         <View style={styles.appBarLeft}>
-                        <Image
-                            source={avatarSource}
-                            style={styles.profileImage}
-                            accessibilityLabel="Profile avatar"
-                        />
+          <Image
+            source={avatarSource}
+            style={styles.profileImage}
+            accessibilityLabel="Profile avatar"
+          />
           <Text style={styles.appBarTitle}>MedTrack AI</Text>
         </View>
         <Pressable style={styles.notificationButton} onPress={() => router.push('/settings/notifications')} accessibilityLabel="Notifications" hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
@@ -260,6 +261,7 @@ export default function MedTrackDashboard() {
         {/* Padding for Bottom Bar */}
         <View style={{ height: 100 }} />
       </ScrollView>
+      <UnifiedBottomNav active="home" />
     </SafeAreaView>
   );
 }
@@ -763,55 +765,5 @@ const styles = StyleSheet.create({
     fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif',
     fontSize: 15,
     color: '#414755',
-  },
-
-  // Bottom Nav
-  bottomNav: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingHorizontal: 16,
-    paddingBottom: 16, // + safe area
-    paddingTop: 8,
-    backgroundColor: 'rgba(252, 248, 251, 0.8)',
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -4 },
-    shadowOpacity: 0.05,
-    shadowRadius: 20,
-    elevation: 10,
-  },
-  navItem: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    borderRadius: 999,
-  },
-  navItemActive: {
-    backgroundColor: 'rgba(0, 112, 235, 0.1)', // primary-container
-    paddingHorizontal: 16,
-    transform: [{ scale: 0.9 }],
-  },
-  navIcon: {
-    fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif',
-    fontSize: 24,
-    color: '#414755',
-  },
-  navIconActive: {
-    color: '#0058bc', // primary
-  },
-  navLabel: {
-    fontFamily: Platform.OS === 'ios' ? 'Inter' : 'sans-serif-medium',
-    fontSize: 11,
-    marginTop: 2,
-    color: '#414755',
-  },
-  navLabelActive: {
-    color: '#0058bc',
   },
 });
