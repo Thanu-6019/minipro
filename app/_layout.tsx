@@ -34,6 +34,13 @@ if (IS_NATIVE) {
 }
 
 export default function RootLayout() {
+  // --- FIX START ---
+  // Fire-and-forget: runs synchronously during render, before any hook or
+  // effect fires, so the splash screen is dismissed the instant this
+  // component's JS executes rather than waiting for the effect flush below.
+  hideSplashScreen();
+  // --- FIX END ---
+
   const segments = useSegments();
   const router = useRouter();
   const bootstrapped = useRef(false);

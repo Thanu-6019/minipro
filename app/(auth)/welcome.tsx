@@ -32,9 +32,9 @@ export default function MedTrackAIWelcome() {
             </View>
 
             <View style={styles.glassPanel}>
-              {/* FIX: Corrected path to ../../../assets/logo.png to properly reach root assets folder */}
+              {/* FIX: Corrected relative depth to ../../assets/logo.png (2 levels up from app/(auth)/ reaches the project root assets folder). The previous ../../../ path pointed one level above the project root, which fails Metro's strict path resolution on Windows. */}
               <Image
-                source={require('../../../assets/logo.png')}
+                source={require('../../assets/logo.png')}
                 style={styles.heroImage}
                 resizeMode="contain"
                 accessibilityLabel="MedTrack AI logo"
